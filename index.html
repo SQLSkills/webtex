@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="可视化LaTeX数学公式编辑器 - 支持Markdown、Base64导出、多语言下标">
+  <meta name="keywords" content="LaTeX, 公式编辑器, 数学公式, KaTeX, MathQuill">
+  <meta name="theme-color" content="#2563eb">
+  <title>LaTeX公式编辑器</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- KaTeX CSS & JS -->
+  <link rel="stylesheet" href="/lib/katex/katex.min.css">
+  <script src="/lib/katex/katex.min.js"></script>
+
+  <!-- jQuery (required by MathQuill) -->
+  <script src="/lib/jquery.min.js"></script>
+
+  <!-- MathQuill CSS & JS -->
+  <link rel="stylesheet" href="/lib/mathquill/mathquill.css">
+  <script src="/lib/mathquill/mathquill.min.js"></script>
+
+  <!-- MathJax 4.x - tex-svg.js is self-contained, no startup.js needed -->
+  <script>
+    window.MathJax = {
+      startup: { typeset: false },
+      options: { enableMenu: false }
+    };
+  </script>
+  <script id="MathJax-script" async src="/lib/mathjax/mathjax-local/tex-svg.js"></script>
+
+  <style>
+    /* Critical CSS - Prevent FOUC */
+    #app {
+      min-height: 100vh;
+      background-color: #f8fafc;
+    }
+
+    .loading-screen {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      font-family: 'Inter', sans-serif;
+      color: #64748b;
+    }
+
+    .loading-spinner {
+      width: 40px;
+      height: 40px;
+      border: 3px solid #e2e8f0;
+      border-top-color: #2563eb;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-right: 16px;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+  <script type="module" crossorigin src="/js/index-B4CjTnRY.js"></script>
+  <link rel="modulepreload" crossorigin href="/js/feature-autocomplete-DpvlAymn.js">
+  <link rel="modulepreload" crossorigin href="/js/rolldown-runtime-CMdCxOdv.js">
+  <link rel="modulepreload" crossorigin href="/js/feature-export-Dq3Vnpi1.js">
+  <link rel="modulepreload" crossorigin href="/js/vendor-react-B7jv69_I.js">
+  <link rel="modulepreload" crossorigin href="/js/vendor-zustand-C0z_eS8Z.js">
+  <link rel="modulepreload" crossorigin href="/js/feature-history-0Jjo4TDO.js">
+  <link rel="stylesheet" crossorigin href="/css/index-BryaQ-Qh.css">
+</head>
+<body>
+  <div id="app">
+    <div class="loading-screen">
+      <div class="loading-spinner"></div>
+      <span>正在加载编辑器...</span>
+    </div>
+  </div>
+
+
+  <!-- Fallback: Check if KaTeX loaded -->
+  <script>
+    window.addEventListener('load', function() {
+      if (typeof katex === 'undefined') {
+        console.warn('KaTeX not loaded from local, trying CDN...');
+        var script = document.createElement('script');
+        script.src = 'https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js';
+        document.head.appendChild(script);
+
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = 'https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css';
+        document.head.appendChild(link);
+      }
+    });
+  </script>
+</body>
+</html>
